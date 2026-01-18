@@ -18,7 +18,7 @@
 
 // export default App;
 
-import UserProfile from './components/UserProfile';
+import UserProfile from './components/ProfilePage';
 import UserContext from './UserContext';
 
 function App() {

@@ -1,19 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import WelcomeMessage from './components/WelcomeMessage'
-import Header from './components/Header';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
-import UserProfile from './components/UserDetails'
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+// import './App.css'
+// import WelcomeMessage from './components/WelcomeMessage'
+// import Header from './components/Header';
+// import MainContent from './components/MainContent';
+// import Footer from './components/Footer';
+// import UserProfile from './components/UserDetails'
+
+// import ProfilePage from './components/ProfilePage';
+
+// function App() {
+//   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
+
+//   return <ProfilePage userData={userData} />;
+// }
+
+// export default App;
 
 import ProfilePage from './components/ProfilePage';
+import UserContext from './UserContext';
 
 function App() {
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
+  const userData = {
+    name: "Jane Doe",
+    email: "jane.doe@example.com",
+  };
 
-  return <ProfilePage userData={userData} />;
+  return (
+    <UserContext.Provider value={userData}>
+      <ProfilePage />
+    </UserContext.Provider>
+  );
 }
 
 export default App;

@@ -5,10 +5,16 @@ export const useRecipeStore = create((set, get) => ({
   favorites: [],
   recommendations: [],
   filteredRecipes: [],
+  recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
 
   /* Existing actions */
   addRecipe: (newRecipe) =>
     set((state) => ({ recipes: [...state.recipes, newRecipe] })),
+
+  setSearchTerm: (term) =>
+    set({ searchTerm: term }),
 
   deleteRecipe: (id) =>
     set((state) => ({

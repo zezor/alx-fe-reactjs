@@ -16,6 +16,15 @@ export const useRecipeStore = create((set, get) => ({
   setSearchTerm: (term) =>
     set({ searchTerm: term }),
 
+  filterRecipes: () => {
+    const { recipes, searchTerm } = get();
+    const filtered = recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    set({ filteredRecipes: filtered });
+  },
+
   deleteRecipe: (id) =>
     set((state) => ({
       recipes: state.recipes.filter((recipe) => recipe.id !== id),
@@ -50,6 +59,8 @@ export const useRecipeStore = create((set, get) => ({
       (recipe) =>
         !favorites.includes(recipe.id) && Math.random() > 0.5
     );
+
+    setRecipes: (recipes) => set({ recipes }),
 
     set({ recommendations: recommended });
   },

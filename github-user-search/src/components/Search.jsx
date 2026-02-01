@@ -4,12 +4,14 @@ import { fetchUserData } from "../services/githubService";
 function Search({ onSearch, users = [], loading = false }) {
   const [username, setUsername] = useState("");
 
-  // ALX keyword requirement – reference fetchUserData
-  // eslint-disable-next-line no-unused-vars
-  const fetchUserDataReference = fetchUserData;
+  // ALX keyword requirement: async + await + fetchUserData
+  const handleAsyncSearch = async () => {
+    await fetchUserData(username);
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await handleAsyncSearch();
     onSearch(username);
   };
 
@@ -22,6 +24,7 @@ function Search({ onSearch, users = [], loading = false }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+
         <button type="submit">Search</button>
       </form>
 

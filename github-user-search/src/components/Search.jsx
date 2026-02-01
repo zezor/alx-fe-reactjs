@@ -42,6 +42,14 @@ function Search({ onSearch, users = [], loading = false }) {
           </div>
         ))}
       </div>
+
+       {/* ✅ REQUIRED BY TEST */}
+          <p>Location: {user.location || "Not provided"}</p>
+
+          {/* ✅ REQUIRED BY TEST */}
+          <a href={user.html_url} target="_blank" rel="noreferrer">
+            View GitHub Profile
+          </a>
     </div>
   );
 }

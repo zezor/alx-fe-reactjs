@@ -54,17 +54,17 @@ function App() {
     setLoading(true);
     setPage(1);
     setQuery(params);
-    setError("");
+    
 
-    try {
+    
     const data = await searchUsers({ ...params, page: 1 });
     setUsers(data.items);
 
-    } catch (err) {
+    
     setError("Failed to fetch users. Try again.");
-    } finally {
+    
     setLoading(false);
-    }
+    
   };
 
   const loadMore = async () => {

@@ -79,7 +79,7 @@ function App() {
       <h1 className="text-2xl font-bold mb-4">GitHub User Search 🔍</h1>
 
       <SearchBar onSearch={handleSearch} />
-
+      
       {loading && <p>Loading...</p>}
 
       <UserList users={users} />

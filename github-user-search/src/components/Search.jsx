@@ -1,44 +1,44 @@
 import { useState } from "react";
 
-function Search({ onSearch }) {
+function Search({ onSearch, users = [], loading = false }) {
   const [username, setUsername] = useState("");
-  const [location, setLocation] = useState("");
-  const [repos, setRepos] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch({
-      username,
-      location,
-      repos,
-    });
+    onSearch(username);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+    <div>
+      {/* SEARCH FORM */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search GitHub user"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
 
-      <input
-        type="text"
-        placeholder="Location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-      />
+      {/* LOADING STATE */}
+      {loading && <p>Loading</p>}
 
-      <input
-        type="number"
-        placeholder="Min Repositories"
-        value={repos}
-        onChange={(e) => setRepos(e.target.value)}
-      />
+      {/* EMPTY STATE */}
+      {!loading && users.length === 0 && (
+        <p>Looks like we cant find the user</p>
+      )}
 
-      <button type="submit">Search</button>
-    </form>
+      {/* RESULTS */}
+      <div>
+        {users.map((user) => (
+          <div key={user.id}>
+            <img src={user.avatar_url} alt={user.login} />
+            <p>{user.login}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

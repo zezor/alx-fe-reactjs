@@ -4,7 +4,7 @@ function UserProfile() {
       <img
         src="https://drive.google.com/uc?export=download&id=1b1_lsMLgmDa-vzTwlAV7pAHPlgOaoO6r"
         alt="John Doe"
-        className="rounded-full m-4 mx-auto md:w-36 md:h-36 sm:w-24 sm:h-24 hover:scale-110 transition-transform duration-300 ease-out"
+        className="rounded-full m-4 mx-auto md:w-36 md:h-36 sm:w-24 sm:h-24 hover:scale-110 transition-transform duration-300 ease-in-out"
       />
       <h1 className="md:text-xl sm:text-lg text-blue-800 my-4 hover:text-blue-500">John Doe</h1>
       <p className="text-gray-600 md:text-base sm:text-sm hover:shadow-xl">

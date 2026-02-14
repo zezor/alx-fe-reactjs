@@ -59,7 +59,7 @@ export default function AddRecipeForm() {
     <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-2xl bg-white p-6 rounded-xl shadow-lg space-y-6"
+        className="w-full max-w-2xl bg-white p-6 rounded-xl shadow-lg space-y-6 md:p-8"
       >
         <h2 className="text-2xl font-bold text-center text-gray-800">
           Add New Recipe

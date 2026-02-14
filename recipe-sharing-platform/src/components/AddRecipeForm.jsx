@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
@@ -28,6 +30,7 @@ export default function AddRecipeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
 
     const validationErrors = validateForm();
     setErrors(validationErrors);
@@ -46,6 +49,9 @@ export default function AddRecipeForm() {
       setIngredients("");
       setSteps("");
       setErrors({});
+
+      alert(`${newRecipe.title} added successfully!`);
+      navigate("/"); // change to your route
     }
   };
 
@@ -115,7 +121,6 @@ export default function AddRecipeForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          
           className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300"
         >
           Submit Recipe

@@ -1,33 +1,23 @@
 import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.username.trim()) {
+    if (!username.trim()) {
       newErrors.username = "Username is required";
     }
 
-    if (!formData.email.trim()) {
+    if (!email.trim()) {
       newErrors.email = "Email is required";
     }
 
-    if (!formData.password.trim()) {
+    if (!password.trim()) {
       newErrors.password = "Password is required";
     }
 
@@ -41,26 +31,15 @@ export default function RegistrationForm() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form Submitted:", formData);
-
-      // Simulated API call
-      fetch("https://jsonplaceholder.typicode.com/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("API Response:", data);
-        });
-
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
+      console.log("Form Submitted:", {
+        username,
+        email,
+        password,
       });
+
+      setUsername("");
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -75,10 +54,9 @@ export default function RegistrationForm() {
         <div>
           <input
             type="text"
-            name="username"
             placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="w-full border p-3 rounded"
           />
           {errors.username && (
@@ -89,10 +67,9 @@ export default function RegistrationForm() {
         <div>
           <input
             type="email"
-            name="email"
             placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full border p-3 rounded"
           />
           {errors.email && (
@@ -103,10 +80,9 @@ export default function RegistrationForm() {
         <div>
           <input
             type="password"
-            name="password"
             placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border p-3 rounded"
           />
           {errors.password && (

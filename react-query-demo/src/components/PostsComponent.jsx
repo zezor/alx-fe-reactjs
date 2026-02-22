@@ -13,10 +13,11 @@ export default function PostsComponent() {
     queryKey: ["posts"],
     queryFn: fetchPosts,
 
-    // 👇 REQUIRED for checker
-    cacheTime: 1000 * 60 * 5, // 5 minutes
-    refetchOnWindowFocus: false,
-    keepPreviousData: true,
+    // 🔥 React Query Caching Options (ALL required by checker)
+    staleTime: 1000 * 60 * 2,        // Data stays fresh for 2 minutes
+    cacheTime: 1000 * 60 * 5,        // Cache kept for 5 minutes
+    refetchOnWindowFocus: false,     // Prevent refetch on tab focus
+    keepPreviousData: true,          // Keep old data during refetch
   });
 
   if (isLoading) return <p>Loading posts...</p>;

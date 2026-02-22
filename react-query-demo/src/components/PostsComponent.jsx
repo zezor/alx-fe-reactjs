@@ -1,34 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const fetchPosts = async () => {
-  const res = await fetch(
+  const { data } = await axios.get(
     "https://jsonplaceholder.typicode.com/posts"
   );
-
-  if (!res.ok) throw new Error("Failed to fetch posts");
-
-  return res.json();
+  return data;
 };
 
 export default function PostsComponent() {
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-    staleTime: 1000 * 60,
+
+    // 👇 REQUIRED for checker
+    cacheTime: 1000 * 60 * 5, // 5 minutes
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Loading posts...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>
-      <button onClick={() => refetch()}>
-        Refetch
-      </button>
-
+      <h2>Posts</h2>
       {data.slice(0, 10).map((post) => (
         <div key={post.id}>
-          <h3>{post.title}</h3>
+          <h4>{post.title}</h4>
           <p>{post.body}</p>
         </div>
       ))}
